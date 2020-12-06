@@ -36,7 +36,7 @@ namespace SlothEnterprise.ProductApplication
                       companyData
                     , cid.TotalLedgerNetworth, cid.AdvancePercentage, cid.VatRate);
 
-                return (result.Success) ? result.ApplicationId ?? Constants.FAILURE_RESPONSE : Constants.FAILURE_RESPONSE;
+                return DTOHelper.GetResponse(result);
             }
 
             if (application.Product is BusinessLoans loans)
@@ -48,7 +48,7 @@ namespace SlothEnterprise.ProductApplication
                         InterestRatePerAnnum = loans.InterestRatePerAnnum,
                         LoanAmount = loans.LoanAmount
                     });
-                return (result.Success) ? result.ApplicationId ?? Constants.FAILURE_RESPONSE : Constants.FAILURE_RESPONSE;
+                return DTOHelper.GetResponse(result);
             }
 
             // If there is any IProduct implementation which has not been yet implemented

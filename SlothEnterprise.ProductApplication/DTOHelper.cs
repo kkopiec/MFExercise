@@ -18,5 +18,9 @@ namespace SlothEnterprise.ProductApplication
                 DirectorName = data.DirectorName
             };
         }
+        public static int GetResponse(IApplicationResult result)
+        {
+            return (result.Success) ? result.ApplicationId ?? Constants.FAILURE_RESPONSE : Constants.FAILURE_RESPONSE;
+        }
     }
 }
