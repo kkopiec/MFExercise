@@ -21,7 +21,10 @@ namespace SlothEnterprise.ProductApplication
 
         public int SubmitApplicationFor(ISellerApplication application)
         {
+            // companyData is used throughOut most of service calls 
             var companyData = DTOHelper.GetCompanyDataRequest(application.CompanyData);
+
+            // this is only call that returns stright int response from the service 
             if (application.Product is SelectiveInvoiceDiscount sid)
             {
                 return _selectInvoiceService.SubmitApplicationFor(application.CompanyData.Number.ToString(), sid.InvoiceAmount, sid.AdvancePercentage);
@@ -48,6 +51,7 @@ namespace SlothEnterprise.ProductApplication
                 return (result.Success) ? result.ApplicationId ?? Constants.FAILURE_RESPONSE : Constants.FAILURE_RESPONSE;
             }
 
+            // If there is any IProduct implementation which has not been yet implemented
             throw new InvalidOperationException(Constants.ERR_01);
         }
     }
